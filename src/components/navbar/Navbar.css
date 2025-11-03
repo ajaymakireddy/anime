@@ -1,0 +1,162 @@
+/* Navbar main container */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 40px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Left section: logo + title */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-left img:first-child {
+  height: 50px;
+  width: auto;
+}
+
+.navbar-left img:last-child {
+  height: 40px;
+  width: auto;
+}
+
+/* Center section: search bar */
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-center input {
+  width: 60%;
+  max-width: 600px;
+  min-width: 250px;
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-center input:focus {
+  border-color: #888;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Right section: icons (SVGs) */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navbar-right svg {
+  cursor: pointer;
+  /* transition: transform 0.2s ease-in-out; */
+}
+
+/* 
+.navbar-right svg:hover {
+  transform: scale(1.05);
+} */
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .navbar-center input {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-left img:last-child {
+    display: none;
+    /* hide title text on mobile */
+  }
+
+  .navbar-center input {
+    width: 100%;
+  }
+}
+
+
+.navbar-links ul {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  /* Space between links */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navbar2 {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.navbar-links li {
+  max-width: fit-content;
+  min-width: 100px;
+  height: 50px;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #222;
+  /* Adjust color as needed */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navbar-links li:hover {
+  background-color: #888;
+  color: white;
+}
+
+.pincode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.pincode input {
+  width: 180px;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.pincode label {
+  margin-right: 8px;
+  font-size: 14px;
+  color: #555;
+}
