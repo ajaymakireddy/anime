@@ -10,6 +10,7 @@ import Navbar from "./components/navbar/Navbar";
 import AdminDashboard from "./admindashboard/AdminDashboard";
 import CheckOutPage from "./pages/checkout/CheckOutPageOne";
 import CheckOutPageOne from "./pages/checkout/CheckOutPageOne";
+import AuthPopup from "./components/logindetails/AuthPopup";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -25,7 +26,7 @@ function App() {
   return (
     <>
       {showLogin ? (
-        <LoginPage
+        <AuthPopup
           setShowLogin={setShowLogin}
           isAdmin={isAdmin}
           setIsAdmin={setIsAdmin}
