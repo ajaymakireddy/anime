@@ -24,8 +24,6 @@
     Arial;
 }
 
-
-
 /* =========================
    Top Navbar (logo + search + actions)
    ======================== */
@@ -46,6 +44,7 @@
     var(--bg) 100%
   );
 }
+
 
 /* Left: Logo + Title */
 .navbar-left {
@@ -144,16 +143,17 @@
   gap: 40px;
   margin-left: 0.5rem;
   white-space: nowrap;
+  padding-right: 20px;
 }
 
 /* Primary sign-in button */
 .navbar-signin button {
   border: 1px solid var(--brand);
-  border-radius: 50px;
+  border-radius: 10px;
   color: #49557e;
   background: transparent;
-  font-size: 16px;
-  padding: 10px 30px;
+  font-size: 14px;
+  padding: 8px 15px;
   cursor: pointer;
   transition: background-color 0.18s ease, color 0.18s ease,
     box-shadow 0.12s ease;
@@ -161,7 +161,7 @@
 
 /* Hover / focus */
 .navbar-signin button:hover {
-  background-color: #0096ff; /* your original hover bg */
+  background-color: var(--brand); /* your original hover bg */
   color: #fff;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
@@ -172,18 +172,21 @@
 /* =========================
    Secondary Navbar (links + pincode)
    ========================= */
+
+.bottom-navbar {
+  box-shadow: var(--shadow);
+}
 .navbar2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.6rem 2rem;
-  /* box-shadow: var(--shadow); */
   width: fit-content;
   gap: 1rem;
   flex-wrap: wrap;
   transition: max-height 0.2s ease, padding 0.2s ease, opacity 0.2s ease;
 }
-.search-icon{
+.search-icon {
   position: absolute;
   left: 68%;
   top: 35%;
