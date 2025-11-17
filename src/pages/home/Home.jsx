@@ -1,5 +1,3 @@
-import FeaturedCollection from "../../components/featuredcollection/CategoriesHome";
-import FeaturedProducts from "../../components/featuredproducts/FeaturedProducts";
 import Footer from "../../components/footer.jsx/Footer";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
@@ -13,6 +11,9 @@ import SecureSteps from "../../components/securesteps/SecureSteps";
 import { Route, Routes } from "react-router-dom";
 import CategoriesHome from "../../components/featuredcollection/CategoriesHome";
 import CategoriesPage from "../../components/featuredcollection/CategoriesPage";
+import FeaturedProductsHome from "../../components/featuredproducts/FeaturedProductsHome";
+import FeaturedProductsList from "../../components/featuredproducts/FeaturedProductsList";
+import Wishlist from "../../components/wishlists/Wishlist";
 
 const Home = ({ setShowLogin }) => {
   const products = [
@@ -72,7 +73,7 @@ const Home = ({ setShowLogin }) => {
               <Header />
               <CategoriesHome products={products} />
               <BundlesDeals products={products} />
-              <FeaturedProducts products={products} />
+              <FeaturedProductsHome products={products} />
               <Reviews />
               <SecureSteps />
             </div>
@@ -80,6 +81,8 @@ const Home = ({ setShowLogin }) => {
         />
 
         <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/products" element={<FeaturedProductsList />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
     </>
   );

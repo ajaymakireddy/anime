@@ -58,13 +58,13 @@
   min-width: 280px;
   max-width: 320px;
   flex: 0 0 auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .exploreMenuListItem:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .productImage {
@@ -87,12 +87,13 @@
   justify-content: center;
 }
 
-.productInfo h3, .categoryTitle {
+.productInfo h3,
+.categoryTitle {
   background-color: #111;
   font-size: 1.1rem;
   font-weight: 600;
   color: #fff;
-  text-transform: capitalize;
+  text-transform: uppercase;
   width: fit-content;
   padding: 6px 10px;
   border-radius: 5px;
@@ -115,21 +116,22 @@
 .categoriesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
+  gap: 30px;
 }
 
 .categoryCard {
+  max-width: 270px;
   background: #e1e1e1;
   border-radius: 16px;
   padding: 15px;
   text-align: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   transition: 0.3s ease;
 }
 
 .categoryCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .categoryCard img {
@@ -141,6 +143,5 @@
 
 .categoryCard h3 {
   margin-top: 12px;
-  font-size: 1.2rem;
   font-weight: 600;
 }

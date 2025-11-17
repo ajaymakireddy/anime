@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import logo from "../../images/logo.png";
 import title from "../../images/title.png";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const Navbar = ({ setShowLogin }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const breakpoint = 768;
 
@@ -86,16 +88,12 @@ const Navbar = ({ setShowLogin }) => {
           )}
 
           {/* Cart / Example Icon */}
-          <button className="icon-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="black"
-            >
-              <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" />
-            </svg>
+          <button className="icon-btn" onClick={() => navigate("/wishlist")}>
+            {location.pathname?.includes("/wishlist") ? (
+              <FaHeart color="red" size={22} />
+            ) : (
+              <FaRegHeart color="black" size={22} />
+            )}
           </button>
           <button className="icon-btn">
             <svg
@@ -155,12 +153,12 @@ const Navbar = ({ setShowLogin }) => {
         </div>
 
         <div className="navbar-signin">
-          <button onClick={() => setShowLogin(true)}>Sign In</button>
+          <button onClick={() => setShowLogin(true)}>Login</button>
         </div>
       </nav>
 
       {/* ===== Secondary Navbar ===== */}
-      <div className="d-flex justify-center w-100">
+      <div className="d-flex justify-center w-100 bottom-navbar">
         <div className={`navbar2 ${menuOpen ? "open" : ""}`}>
           <ul className="navbar-links">
             <li onClick={() => navigate("/")}>Home</li>
@@ -170,7 +168,6 @@ const Navbar = ({ setShowLogin }) => {
             <li>Featured</li>
             <li>Reviews</li>
             <li>Discounts</li>
-            <li>My Wishlist</li>
           </ul>
         </div>
       </div>
