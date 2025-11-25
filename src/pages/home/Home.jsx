@@ -14,6 +14,8 @@ import CategoriesPage from "../../components/featuredcollection/CategoriesPage";
 import FeaturedProductsHome from "../../components/featuredproducts/FeaturedProductsHome";
 import FeaturedProductsList from "../../components/featuredproducts/FeaturedProductsList";
 import Wishlist from "../../components/wishlists/Wishlist";
+import CategoryProducts from "../../components/products/CategoryProducts";
+import SingleProductPage from "../../components/singleproduct/SingleProductPage";
 
 const Home = ({ setShowLogin }) => {
   const products = [
@@ -80,7 +82,8 @@ const Home = ({ setShowLogin }) => {
           }
         />
 
-        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/categories/:categoryName/products" element={<CategoryProducts />} />
+        <Route path="/product/:id" element={<SingleProductPage/>}/>
         <Route path="/products" element={<FeaturedProductsList />} />
         <Route path="/wishlist" element={<Wishlist />} />
       </Routes>

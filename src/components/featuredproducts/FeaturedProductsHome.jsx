@@ -8,7 +8,7 @@ const FeaturedProductsHome = () => {
 
   const { products } = useAuthContext();
 
-  const visibleProducts = products.slice(0, 5);
+  const visibleProducts = products;
 
   return (
     <section className={styles.featuredContainer}>
@@ -24,7 +24,7 @@ const FeaturedProductsHome = () => {
 
       <div className={styles.scroller}>
         {visibleProducts.map((product) => (
-          <div key={product.id} className={styles.card}>
+          <div key={product.id} className={styles.card} onClick={() => navigate('/product/${product.id}')}>
             <div className={styles.imageWrapper}>
               <img src={product.image} alt={product.productName} />
             </div>
