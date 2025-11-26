@@ -1,127 +1,345 @@
+/* Reset box-sizing and ensure no unexpected overflow from this component */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Page wrapper centers content and prevents horizontal overflow */
+.page-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  /* protects against accidental horizontal overflow inside this component */
+  background: #fff;
+  padding: 20px;
+  /* small outer padding for mobile */
+}
+
+/* MAIN LAYOUT */
 .details-container {
+  max-width: 1400px;
+  /* keeps layout centered and prevents extreme wide content */
+  margin: 0 auto;
   display: flex;
   gap: 40px;
-  padding: 40px;
+  padding: 24px;
+  align-items: flex-start;
   flex-wrap: wrap;
+  /* allows stacking when space is limited */
 }
 
 /* LEFT */
 .left-images {
-  flex: 1;
-  min-width: 350px;
+  flex: 1 1 480px;
+  /* grow, shrink, base 480px */
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-image {
   width: 100%;
+  max-width: 680px;
+  /* prevents oversized image on very large screens */
   height: 450px;
-  object-fit: cover;
+  /* important for responsiveness */
+  object-fit: contain;
   border-radius: 10px;
-  background: #e5e5e5;
+  background: #eaeaea;
+  display: block;
 }
 
 /* RIGHT */
 .right-info {
-  flex: 1;
-  min-width: 350px;
+  flex: 1 1 380px;
+  /* grow, shrink, base 380px */
+  min-width: 260px;
 }
 
+
+/* Typography & small elements */
 .brand-title {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 5px;
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 6px;
 }
 
 .product-title {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 6px 0 8px;
+  line-height: 1.15;
+}
+
+.rating {
+  color: #333;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
 }
 
 .rating span {
   color: #888;
-  font-size: 14px;
+  font-size: 0.9rem;
+  margin-left: 8px;
 }
 
 .price {
-  font-size: 28px;
+  font-size: 1.5rem;
   margin: 10px 0;
+  color: #111;
 }
 
 .stock-warning {
-  color: red;
-  font-size: 14px;
-  margin-bottom: 15px;
+  color: #c0392b;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
 }
 
-.qty-box {
+/* Quantity + actions */
+.qty-and-actions {
   display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+/* Quantity selector */
+.qty-box {
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 15px;
+  background: transparent;
+  padding: 4px;
 }
 
-.qty-box button {
-  width: 35px;
-  height: 35px;
+.qty-btn {
+  min-width: 40px;
+  min-height: 40px;
   border: none;
-  background: #ddd;
-  border-radius: 5px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  font-size: 1.3rem;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s ease;
 }
 
+.qty-btn:active {
+  transform: translateY(1px);
+}
+
+.qty-value {
+  min-width: 36px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Buttons */
 .btn-row {
   display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 20px;
+  width: 100%;
+}
+
+.add-cart,
+.buy-now {
+  flex: 1 1 auto;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .add-cart {
-  flex: 1;
-  padding: 12px;
   background: #b30000;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  color: #fff;
+}
+
+.add-cart:active {
+  transform: translateY(1px);
 }
 
 .buy-now {
-  flex: 1;
-  padding: 12px;
   background: #ff0000;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  color: #fff;
 }
 
+/* sections */
 .section {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .section h3 {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* specs list */
+.spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.spec-list p{
+  margin: 0;
+}
+.spec-list li {
+ width: 100%;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 0.95rem;
+}
+
+
+.spec-key {
+  min-width: 90px;
+  font-weight: 600;
+  color: #333;
 }
 
 /* RELATED PRODUCTS */
 .related-products {
   width: 100%;
-  margin-top: 60px;
+  margin-top: 36px;
 }
 
+.related-products h2 {
+  margin-bottom: 14px;
+  font-size: 1.1rem;
+}
+
+/* On wider screens show a wrapping grid */
 .related-list {
-  display: flex;
-  gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  align-items: start;
 }
 
+
+
+.specifications hr {
+  margin: 3px;
+}
+
+
+
+
+/* On very small screens we'll allow horizontal scroll for related products so cards remain usable */
+@media (max-width: 520px) {
+  .related-list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .related-list::-webkit-scrollbar {
+    height: 8px;
+  }
+}
+
+/* related card */
 .related-card {
-  width: 160px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px;
   text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
 }
 
 .related-card img {
   width: 100%;
-  height: 160px;
-  border-radius: 10px;
+  height: 140px;
   object-fit: cover;
-  background: #e5e5e5;
+  border-radius: 8px;
+  background: #eaeaea;
+}
+
+.related-name {
+  font-size: 0.95rem;
+  margin: 8px 0 6px;
+  color: #333;
+}
+
+.related-price {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #111;
+}
+
+/* Small screens: stack columns and improve spacing */
+@media (max-width: 980px) {
+  .details-container {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .left-images {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .right-info {
+    flex-basis: 100%;
+  }
+
+  .main-image {
+    max-height: 520px;
+    /* avoid too tall images on tablet when stacked */
+  }
+
+  .btn-row {
+    width: 100%;
+  }
+}
+
+/* Mobile: tighter spacing, bigger tap targets, stacked layout */
+@media (max-width: 520px) {
+  .details-container {
+    padding: 14px;
+    gap: 16px;
+  }
+
+  .product-title {
+    font-size: 1.2rem;
+  }
+
+  .price {
+    font-size: 1.25rem;
+  }
+
+  .qty-btn {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1.4rem;
+  }
+
+  .add-cart,
+  .buy-now {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .section h3 {
+    font-size: 0.98rem;
+  }
+
+  .related-card img {
+    height: 120px;
+  }
+}
+
+/* Prevent the body from horizontal scroll caused by long words or elements */
+.not-found {
+  padding: 40px;
+  text-align: center;
 }
