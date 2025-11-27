@@ -1,4 +1,4 @@
-import { useContext, createContext } from "react";
+import { useContext, createContext, useState } from "react";
 import axios from "axios";
 
 import shirt1 from "./images/products/Shirt1.png";
@@ -25,6 +25,8 @@ const AuthContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const VITE_API_KEY = import.meta.env.VITE_API_URL;
+
+  const [isLogin, setIsLogin] = useState(false);
 
   const products = [
     // ------------------ PREMIUM FIGURES (20) ------------------
@@ -115,8 +117,16 @@ export const ContextProvider = ({ children }) => {
     delete: (url, data = {}) => api.delete(url, { data }),
   };
 
+  const onLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    setIsLogin(false);
+    // window.location.reload();
+  }
+
   return (
-    <AuthContext.Provider value={{ axiosInstance, products }}>
+    <AuthContext.Provider value={{ axiosInstance, products, onLogout, isLogin, setIsLogin }}>
       {children}
     </AuthContext.Provider>
   );

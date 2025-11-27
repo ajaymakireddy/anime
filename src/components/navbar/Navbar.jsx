@@ -4,6 +4,8 @@ import title from "../../images/title.png";
 import "./Navbar.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import ProfileMenu from "./ProfileMenu";
+import { useAuthContext } from "../../Auth";
 
 const Navbar = ({ setShowLogin }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,6 +14,7 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const {onLogout, isLogin} = useAuthContext();
   const breakpoint = 768;
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
@@ -21,6 +24,8 @@ const Navbar = ({ setShowLogin }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <>
@@ -152,9 +157,9 @@ const Navbar = ({ setShowLogin }) => {
           )}
         </div>
 
-        <div className="navbar-signin">
+        {(!user && !isLogin ) ? <div className="navbar-signin">
           <button onClick={() => setShowLogin(true)}>Login</button>
-        </div>
+        </div> : <ProfileMenu user={user} onLogout={onLogout} />}
       </nav>
 
       {/* ===== Secondary Navbar ===== */}
