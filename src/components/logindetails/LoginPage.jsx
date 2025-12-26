@@ -1,13 +1,18 @@
+// ------------------------------------------------------------------
+// LoginPage.jsx (updated to include Forgot Password handler)
 import { useState } from "react";
 import "./LoginPage.css";
 import { useAuthContext } from "../../Auth.jsx";
+import { useNavigate } from "react-router-dom";
 
-const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup }) => {
+const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup, onForgotPassword }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { axiosInstance } = useAuthContext();
+  const { axiosInstance, isLogin, setIsLogin } = useAuthContext();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const navigate = () => useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,44 +25,36 @@ const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup }) => {
 
     setLoading(true);
     try {
-
       const response = await axiosInstance.post('/auth/login', {
         email: email.trim().toLowerCase(),
         password: password
       });
-      console.log(response);
-
 
       const data = response.data;
+      setIsLogin(true);
 
-      const accessToken =  data.tokens?.accessToken ;
-      const refreshToken = data.tokens?.refreshToken ;
+      const accessToken = data.tokens?.accessToken;
+      const refreshToken = data.tokens?.refreshToken;
       const user = data.user;
 
-      user ? localStorage.setItem("user", JSON.stringify(user)) : null;
-
-      if (accessToken) {
-        localStorage.setItem("access_token", accessToken);
-      }
-
-      if (refreshToken) {
-        localStorage.setItem("refresh_token", refreshToken);
-      }
-
-      if (response.date?.token) {
-        localStorage.setItem("access_token", response.data.token);
-      }
+      if (user) localStorage.setItem("user", JSON.stringify(user));
+      if (accessToken) localStorage.setItem("access_token", accessToken);
+      if (refreshToken) localStorage.setItem("refresh_token", refreshToken);
 
       setShowLogin(false);
 
+      if (user?.role === 'admin') {
+        setIsAdmin(true);
+        navigate('/admin');
+      } else {
+        setIsAdmin(false);
+      }
     } catch (error) {
-
+      console.log(error);
+      setError(error?.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);
     }
-
-    // console.log("Logged in:", email);
-    setShowLogin(false);
   };
 
   return (
@@ -86,11 +83,17 @@ const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup }) => {
         />
       </div>
 
-      <button type="submit">Login</button>
+      {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
+
+      <button type="submit" disabled={loading}>{loading ? 'Logging...' : 'Login'}</button>
 
       <p>
-        Create New Account?{" "}
-        <span onClick={onSwitchToSignup}>Click Here</span>
+        Create New Account? {" "}
+        <span onClick={onSwitchToSignup} style={{ cursor: 'pointer', textDecoration: 'underline' }}>Click Here</span>
+      </p>
+      <p>
+        Forgot Password? {" "}
+        <span onClick={onForgotPassword} style={{ cursor: 'pointer', textDecoration: 'underline' }}>Click Here</span>
       </p>
     </form>
   );

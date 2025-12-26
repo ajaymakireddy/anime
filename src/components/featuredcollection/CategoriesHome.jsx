@@ -25,24 +25,25 @@ const CategoriesHome = () => {
     { id: 8, name: "Dojo's Mystery", image: DojosMystery },
   ];
 
-  const visibleCategories = categories.slice(0, 5);
+  // const visibleCategories = categories.slice(0, 5);
+  const visibleCategories = categories;
 
   return (
     <section className={styles.featuredContainer}>
       <div className={styles.headerRow}>
         <h1 className={styles.featuredTitle}>Product Categories</h1>
 
-        <button 
+        {/* <button 
           className={styles.moreBtn}
           onClick={() => navigate("/categories")}
         >
           More →
-        </button>
+        </button> */}
       </div>
 
-      <div className={styles.exploreMenuList}>
+      <div className={styles.exploreMenuList} >
         {visibleCategories.map((category) => (
-          <div key={category.id} className={styles.exploreMenuListItem}>
+          <div key={category.id} className={styles.exploreMenuListItem} onClick={() => navigate(`/categories/${category.name}/products`)}>
             <div className={styles.productImage}>
               <img src={category.image} alt={category.name} />
             </div>
