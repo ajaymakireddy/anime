@@ -12,7 +12,7 @@ const Footer = () => {
                     <div className="footer-content-left">
                         {/* <img src={logo} alt="" /> */}
                         <p>
-                           Your ultimate destination for authentic anime merchandise and Collectibles
+                            Your ultimate destination for authentic anime merchandise and Collectibles
                         </p>
                         {/* <div className="footer-social-icons">
               <img src={assets.facebook_icon} alt="" />

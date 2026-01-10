@@ -26,6 +26,24 @@
     
 }
 
+.footer-content-center > ul {
+    padding: 0;
+    margin: 0;
+}
+
+.footer-content-right > ul {
+    padding: 0;
+    margin: 0;
+}
+
+.footer-content-left h2, 
+.footer-content-center h2 , 
+.footer-content-right h2 {
+    /* color: white; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .footer-content-left li,
 .footer-content-center li,
 .footer-content-right li {
